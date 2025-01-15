@@ -4,7 +4,7 @@ import Event, { loader as eventLoader } from "./pages/Event";
 import EventDetails, {
   loader as eventDetailsLoader,
 } from "./pages/EventDetails";
-import NewEvent from "./pages/NewEvent";
+import NewEvent, { action as newEventAction } from "./pages/NewEvent";
 import EditEvent from "./pages/EditEvent";
 import RootLayout from "./pages/RootLayout";
 import ErrorDetail from "./components/ErrorDetail";
@@ -35,7 +35,7 @@ function App() {
                 { path: "edit", element: <EditEvent /> },
               ],
             },
-            { path: "new", element: <NewEvent /> },
+            { path: "new", element: <NewEvent />, action: newEventAction },
           ],
         },
       ],
