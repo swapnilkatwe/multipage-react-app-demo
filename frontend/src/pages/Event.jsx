@@ -14,6 +14,17 @@ export default EventsPage;
 export async function loader() {
   const response = await fetch("http://localhost:8080/events");
   if (!response.ok) {
+    throw new Response(
+      JSON.stringify(
+        { message: "Could Not fetch events." },
+        {
+          status: 500,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+    );
     //...
   } else {
     // const resData = await response.json();
