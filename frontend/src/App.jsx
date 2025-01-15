@@ -25,11 +25,17 @@ function App() {
             { index: true, element: <Event />, loader: eventLoader },
             {
               path: ":eventId",
-              element: <EventDetails />,
-              loader: eventDetailsLoader,
+              id: "event-details",
+              loader: eventDetailsLoader, // Shared loader for Event Details and Edit.
+              children: [
+                {
+                  index: true,
+                  element: <EventDetails />,
+                },
+                { path: "edit", element: <EditEvent /> },
+              ],
             },
             { path: "new", element: <NewEvent /> },
-            { path: ":eventId/edit", element: <EditEvent /> },
           ],
         },
       ],

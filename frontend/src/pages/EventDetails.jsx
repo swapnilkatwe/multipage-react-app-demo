@@ -1,8 +1,8 @@
-import { useLoaderData } from "react-router-dom";
+import { useRouteLoaderData } from "react-router-dom";
 import EventItem from "../components/EventItem";
 
 export default function EventDetails() {
-  const data = useLoaderData();
+  const data = useRouteLoaderData("event-details"); // useRouteLoaderData takes id and useLoaderData dont take id.
   return (
     <>
     <EventItem event={data.event}/>
