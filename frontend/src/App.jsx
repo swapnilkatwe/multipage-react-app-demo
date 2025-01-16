@@ -5,7 +5,8 @@ import EventDetails, {
   loader as eventDetailsLoader,
   action as deleteEventAction,
 } from "./pages/EventDetails";
-import NewEvent, { action as newEventAction } from "./pages/NewEvent";
+import NewEvent from "./pages/NewEvent";
+import { action as manipulateEventAction } from "./components/EventForm";
 import EditEvent from "./pages/EditEvent";
 import RootLayout from "./pages/RootLayout";
 import ErrorDetail from "./components/ErrorDetail";
@@ -34,10 +35,10 @@ function App() {
                   element: <EventDetails />,
                   action: deleteEventAction,
                 },
-                { path: "edit", element: <EditEvent /> },
+                { path: "edit", element: <EditEvent />, action: manipulateEventAction },
               ],
             },
-            { path: "new", element: <NewEvent />, action: newEventAction },
+            { path: "new", element: <NewEvent />, action: manipulateEventAction },
           ],
         },
       ],
