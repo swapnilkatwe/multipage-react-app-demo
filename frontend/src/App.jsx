@@ -12,7 +12,9 @@ import RootLayout from "./pages/RootLayout";
 import ErrorDetail from "./components/ErrorDetail";
 import EventsRoot from "./pages/EventsRoot";
 import NewsletterPage, { action as newsletterAction } from "./pages/Newsletter";
-import AuthenticationPage from "./pages/Authentication";
+import AuthenticationPage, {
+  action as authAction,
+} from "./pages/Authentication";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,7 +25,7 @@ function App() {
       children: [
         // With Relative paths
         { index: true, element: <Home /> },
-        { path: "auth", element: <AuthenticationPage /> },
+        { path: "auth", element: <AuthenticationPage />, action: authAction },
         {
           path: "events",
           element: <EventsRoot />,
