@@ -54,6 +54,11 @@ console.log("action2");
   const token = resData.token;  
   saveAuthToken(token);
 
+  // Store expiration time in local storage to compate time and log out user after expiration time.
+  const expirationDate = new Date();
+  expirationDate.setHours(expirationDate.getHours() + 1);
+  localStorage.setItem("expiration", expirationDate.toISOString());
+
   return redirect("/"); // redirect to Starting page
 
 }
