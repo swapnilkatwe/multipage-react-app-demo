@@ -1,5 +1,6 @@
 import { redirect } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
+import { saveAuthToken } from "../util/Auth";
 
 function AuthenticationPage() {
   return <AuthForm />;
@@ -33,8 +34,6 @@ console.log("action2");
     },
     body: JSON.stringify(authData),
   });
-
-  console.log("response: "+ JSON.stringify(response));
   
   if (response.status === 422 || response.status === 401) {
     return response;
@@ -49,6 +48,11 @@ console.log("action2");
   }
 
   // manage token pending
+  const resData = await response.json();
+  console.log("response: "+ JSON.stringify(resData));
+
+  const token = resData.token;  
+  saveAuthToken(token);
 
   return redirect("/"); // redirect to Starting page
 
