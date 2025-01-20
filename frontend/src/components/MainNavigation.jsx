@@ -1,8 +1,10 @@
 import classes from "./MainNavigation.module.css";
-import { NavLink, Form } from "react-router-dom";
+import { NavLink, Form, useRouteLoaderData } from "react-router-dom";
 import NewsletterSignup from "./NewsletterSignup";
 
 function MainNavigation() {
+  const token = useRouteLoaderData("root"); // App js router with id root is returning token becaouse loader returning token.
+
   return (
     <header className={classes.header}>
       <nav>
@@ -38,22 +40,24 @@ function MainNavigation() {
               Newsletter
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/auth?mode=login"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-            >
-              Authentication
-            </NavLink>
-          </li>
-          <li>
-            <Form action="/logout" method="post"> 
-            {/* action is important here */}
+          {!token && (
+            <li>
+              <NavLink
+                to="/auth?mode=login"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+              >
+                Authentication
+              </NavLink>
+            </li>
+          )}
+          {token && <li>
+            <Form action="/logout" method="post">
+              {/* action is important here */}
               <button>Logout</button>
             </Form>
-          </li>
+          </li>}
         </ul>
       </nav>
       <NewsletterSignup />

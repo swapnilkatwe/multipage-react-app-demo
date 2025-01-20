@@ -16,6 +16,7 @@ import AuthenticationPage, {
   action as authAction,
 } from "./pages/Authentication";
 import { logoutAction } from "./pages/Logout";
+import { tokenLoader } from "./util/Auth";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,6 +24,8 @@ function App() {
       path: "/",
       element: <RootLayout />,
       errorElement: <ErrorDetail />,
+      id: "root",
+      loader: tokenLoader,
       children: [
         // With Relative paths
         { index: true, element: <Home /> },
